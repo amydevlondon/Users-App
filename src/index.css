@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap');
+:root {
+	--body-color: hsl(213, 5%, 98%);
+	--user-color: hsl(213, 40%, 96%);
+	--text-color: hsl(0, 0%, 19%);
+	--loader: hsl(213, 78%, 55%);
+	--large-font-size: 1.3rem;
+	--medium-font-size: 1rem;
+	--small-font-size: .9rem;
+}
+@media screen and (min-width: 600px) {
+	:root {
+		--large-font-size: 1.5rem;
+		--medium-font-size: 1.15rem;
+		--small-font-size: 1rem;
+	}
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: var(--body-color);
+	color: var(--text-color);
+	font-family: 'Poppins', sans-serif;
+	font-size: var(--medium-font-size);
+	min-height: 100vh;
+	display: grid;
+	place-content: center;
+	place-items: center;
+}
+/* FORM */
+.form {
+	display: flex;
+	flex-direction: column;
+	padding: 4rem 1rem 2rem;
+	max-width: 450px;
+	width: 85%;
+}
+.form label {
+	font-size: var(--large-font-size);
+	margin: 2rem 0 .5rem;
+}
+.form select {
+	padding: .5rem 1rem;
+	font-family: inherit;
+	font-size: inherit;
+	border: solid 1px var(--text-color);
+	border-radius: 5px;
+	background-color: var(--user-color);
+	color: inherit;
+}
+.form .results-number {
+	font-size: var(--large-font-size);
+	margin-top: .25rem;
+}
+/* USERS */
+.users {
+	padding: 1rem;
+	width: 90vw;
+	max-width: 900px;
+}
+/* USER */
+.user {
+	background-color: var(--user-color);
+	display: grid;
+	margin: 2rem 0;
+	padding: 2rem;
+	text-transform: capitalize;
+	border-radius: 2px;
+	font-weight: 300;
+}
+.user-photo img {
+	border-radius: 50%;
+	object-fit: cover;
+	width: 100px;
+}
+.user p {
+	display: flex;
+	align-items: center;
+}
+.user-name {
+	font-weight: 400;
+}
+.user-icon {
+	margin-right: .25rem;
+}
+@media screen and (min-width: 750px) {
+	.user {
+		grid-template-columns: 125px 1fr 1fr;
+		place-items: center;
+		place-content: center;
+	}
+}
+/* LOADING */
+.loading,
+.loading:before,
+.loading:after {
+	border-radius: 50%;
+	width: 2.5em;
+	height: 2.5em;
+	animation-fill-mode: both;
+	animation: load 1.8s infinite ease-in-out;
+}
+.loading {
+	color: var(--loader);
+	font-size: 10px;
+	margin: 80px auto;
+	position: relative;
+	text-indent: -9999em;
+	transform: translateZ(0);
+	animation-delay: -0.16s;
+}
+.loading:before,
+.loading:after {
+	content: '';
+	position: absolute;
+	top: 0;
+}
+.loading:before {
+	left: -3.5em;
+	animation-delay: -0.32s;
+}
+.loading:after {
+	left: 3.5em;
+}
+@keyframes load {
+	0%,
+	80%,
+	100% {
+		box-shadow: 0 2.5em 0 -1.3em;
+	}
+	40% {
+		box-shadow: 0 2.5em 0 0;
+	}
+}
+/* ERROR */
+.error p {
+	font-size: var(--large-font-size);
+}
