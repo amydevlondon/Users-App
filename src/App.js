@@ -10,7 +10,9 @@ export const App = () => {
   const [users, setUsers] = useState([]);
   const [resultsNum, setResultsNum] = useState(2);
   const [gender, setGender] = useState("");
-  const [country, setCountry] = useState("gb");
+  const [country, setCountry] = useState("");
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const countries = [{ country: "Unspecified", code: "" }, { country: "Australia", code: "au" }, { country: "Brazil", code: "br" }, { country: "Canada", code: "ca" }, { country: "Denmark", code: "dk" }, { country: "Finland", code: "fi" }, { country: "France", code: "fr" }, { country: "Germany", code: "de" }, { country: "Iran", code: "ir" }, { country: "Ireland", code: "ie" }, { country: "Netherlands", code: "nl" }, { country: "New Zealand", code: "nz" }, { country: "Norway", code: "no" }, { country: "Spain", code: "es" }, { country: "Switzerland", code: "ch" }, { country: "Turkey", code: "tr" }, { country: "United Kingdom", code: "gb" }, { country: "United States", code: "us" }];
 
   useEffect(() => {
     setIsLoading(true);
@@ -54,12 +56,11 @@ export const App = () => {
           <form className="form">
             <label htmlFor="number">Number of Users</label>
             <select value={resultsNum} onChange={changeResultsNum}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
+              {numbers.map((number) => {
+                return (
+                  <option value={number}>{number}</option>
+                );
+              })}
             </select>
             <label htmlFor="gender">Gender</label>
             <select value={gender} onChange={changeGender}>
@@ -69,23 +70,11 @@ export const App = () => {
             </select>
             <label htmlFor="country">Country</label>
             <select value={country} onChange={changeCountry}>
-              <option value="au">Australia</option>
-              <option value="br">Brazil</option>
-              <option value="ca">Canada</option>
-              <option value="dk">Denmark</option>
-              <option value="fi">Finland</option>
-              <option value="fr">France</option>
-              <option value="de">Germany</option>
-              <option value="ir">Iran</option>
-              <option value="ie">Ireland</option>
-              <option value="nl">Netherlands</option>
-              <option value="nz">New Zealand</option>
-              <option value="no">Norway</option>
-              <option value="es">Spain</option>
-              <option value="ch">Switzerland</option>
-              <option value="tr">Turkey</option>
-              <option value="gb">United Kingdom</option>
-              <option value="us">United States</option>
+              {countries.map((item) => {
+                return (
+                  <option value={item.code}>{item.country}</option>
+                );
+              })}
             </select>
           </form>
           <section className="users">
