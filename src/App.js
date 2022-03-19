@@ -20,11 +20,11 @@ export const App = () => {
       try {
         const response = await fetch(`https://randomuser.me/api/?results=${resultsNum}&gender=${gender}&nat=${country}`);
         const data = await response.json();
-        setIsLoading(false);
         setUsers(data.results);
       } catch {
-        setIsLoading(false);
         setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
@@ -48,43 +48,44 @@ export const App = () => {
     setCountry(e.target.value);
   };
 
+  if (isLoading)
+    return <Loading />;
+  if (isError)
+    return <Error />;
   return (
-    isLoading ? <Loading />
-      : isError ? <Error />
-        :
-        <>
-          <form className="form">
-            <label htmlFor="number">Number of Users</label>
-            <select value={resultsNum} onChange={changeResultsNum}>
-              {numbers.map((number) => {
-                return (
-                  <option value={number}>{number}</option>
-                );
-              })}
-            </select>
-            <label htmlFor="gender">Gender</label>
-            <select value={gender} onChange={changeGender}>
-              <option value="">Unspecified</option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-            </select>
-            <label htmlFor="country">Country</label>
-            <select value={country} onChange={changeCountry}>
-              {countries.map((item) => {
-                return (
-                  <option value={item.code}>{item.country}</option>
-                );
-              })}
-            </select>
-          </form>
-          <section className="users">
-            {users.map((user) => {
-              return (
-                <User key={user.id.value} {...user} />
-              );
-            })}
-          </section>
-        </>
+    <>
+      <form className="form">
+        <label htmlFor="number">Number of Users</label>
+        <select value={resultsNum} onChange={changeResultsNum}>
+          {numbers.map((number) => {
+            return (
+              <option key={number} value={number}>{number}</option>
+            );
+          })}
+        </select>
+        <label htmlFor="gender">Gender</label>
+        <select value={gender} onChange={changeGender}>
+          <option value="">Unspecified</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+        <label htmlFor="country">Country</label>
+        <select value={country} onChange={changeCountry}>
+          {countries.map((item) => {
+            return (
+              <option key={item.code} value={item.code}>{item.country}</option>
+            );
+          })}
+        </select>
+      </form>
+      <section className="users">
+        {users.map((user) => {
+          return (
+            <User key={user.id.value} {...user} />
+          );
+        })}
+      </section>
+    </>
   );
 };
 
