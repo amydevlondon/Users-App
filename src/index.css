@@ -43,6 +43,7 @@ body {
 	margin: 2rem 0 .5rem;
 }
 .form select {
+	cursor: pointer;
 	padding: .5rem 1rem;
 	font-family: inherit;
 	font-size: inherit;
