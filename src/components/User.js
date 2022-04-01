@@ -2,7 +2,7 @@ import React from 'react';
 import { GoLocation, GoMail } from 'react-icons/go';
 import { GiSmartphone } from 'react-icons/gi';
 
-export const User = ({ picture, name, gender, dob, location, cell, email }) => {
+const User = ({ picture, name, gender, dob, location, cell, email }) => {
     return (
         <article className="user">
             <div className="user-photo">

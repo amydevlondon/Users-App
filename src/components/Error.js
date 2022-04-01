@@ -1,7 +1,7 @@
 import React from 'react';
 import { BiErrorCircle } from 'react-icons/bi';
 
-export const Error = () => {
+const Error = () => {
     return (
         <div className="error">
             <BiErrorCircle />
