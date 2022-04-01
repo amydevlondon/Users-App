@@ -3,7 +3,7 @@ import Loading from './components/Loading';
 import Error from './components/Error';
 import User from './components/User';
 
-export const App = () => {
+const App = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -81,7 +81,7 @@ export const App = () => {
       <section className="users">
         {users.map((user) => {
           return (
-            <User key={user.id.value} {...user} />
+            <User key={users.indexOf(user)} {...user} />
           );
         })}
       </section>
